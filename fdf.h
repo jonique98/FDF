@@ -6,7 +6,7 @@
 /*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:06:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/04 01:59:17 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/05 21:13:13 by josumin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
+#include<stdio.h>
 
-# define DEF 30
-# define WIN_MAX_X 2000
-# define WIN_MAX_Y 1500
+# define DEF 40
+# define WIN_MAX_X 980
+# define WIN_MAX_Y 540
 # define MAR 100
 
 typedef struct c_data
@@ -44,6 +45,8 @@ typedef struct m_data
 	int			gap;
 	char		*arr;
 	int			**map;
+	int			win_width;
+	int			win_height;
 }	t_map;
 
 
@@ -61,9 +64,11 @@ typedef struct s_data
 
 void	init_map(int fd, t_map *map);
 void	make_offset(t_map *map);
-void	init_image(t_map *map, t_data *image);
+void	init_image(t_map *m, t_data *i);
 void	algin_image(t_map *map, t_data *image);
 void	draw_dot(t_map *map, t_data *image);
+
+void	projection(t_map *map);
 
 void	rotate_x(t_cordinate *c, double gamma);
 void	rotate_y(t_cordinate *c, double beta);
@@ -83,9 +88,8 @@ char	*make_map_line(int fd);
 void	make_int_map(int **arr, t_map *map);
 int		**make_map(t_map *map);
 
-void	dda(t_data *image, t_cordinate offset1, t_cordinate offset2);
+void	dda(t_map * map, t_data *image, t_cordinate offset1, t_cordinate offset2);
 void	draw_line(t_map *map, t_data *image);
-
 
 
 #endif

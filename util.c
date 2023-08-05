@@ -6,7 +6,7 @@
 /*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:11:44 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/04 00:19:36 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/05 06:03:05 by josumin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ int	width_cnt(char *arr)
 	int	cnt;
 
 	cnt = 0;
-	while (*arr != 0 && *arr != '\n')
+	while (*arr && *arr != '\n')
 	{
-		if (is_num(*arr))
+		if (is_num(*arr) || *arr == '-')
 		{
 			cnt++;
-			while (is_num(*arr))
+			while (is_num(*arr) || *arr == '-')
 				arr++;
 		}
 		else
 		{
-			while (*arr && !is_num(*arr))
+			while (*arr && *arr != '-' && !is_num(*arr))
 				arr++;
 		}
 	}
@@ -62,10 +62,17 @@ int	height_cnt(char *arr)
 int	make_num(char **arr)
 {
 	int	n;
+	int	minus;
 
 	n = 0;
-	while (**arr && !is_num(**arr))
+	minus = 1;
+	while (**arr && **arr != '-' && !is_num(**arr))
 		*arr = *arr + 1;
+	if (**arr == '-')
+	{
+		minus = -1;
+		*arr = *arr + 1;
+	}
 	if (is_num(**arr))
 	{
 		while (is_num(**arr))
@@ -74,5 +81,5 @@ int	make_num(char **arr)
 			*arr = *arr + 1;
 		}
 	}
-	return (n);
+	return (n * minus);
 }

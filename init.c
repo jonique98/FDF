@@ -6,7 +6,7 @@
 /*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:13:21 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/04 02:38:23 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/05 21:04:35 by josumin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_gap(t_map *map)
 	map->gap = DEF;
 	width = map->width;
 	height = map->height;
-	while (map->gap * width > WIN_MAX_X || map->gap * width > WIN_MAX_Y)
+	while (map->gap * width > WIN_MAX_X || map->gap * height > WIN_MAX_Y)
 		map->gap--;
 }
 
@@ -48,11 +48,13 @@ void	init_image(t_map *m, t_data *i)
 	int	width;
 	int	height;
 
-	width = m->max_x - m->min_x;
-	height = m->max_y - m->min_y;
 	i->mlx_ptr = mlx_init();
-	i->img = mlx_new_image(i->mlx_ptr, width + 200, height + 200);
+	width = abs(m->max_x - m->min_x) + 1;
+	height = abs(m->max_y - m->min_y) + 1;
+	i->img = mlx_new_image(i->mlx_ptr, width, height);
 	i->win_ptr = mlx_new_window(i->mlx_ptr, width + MAR, height + MAR, "*");
+	m->win_width = width;
+	m->win_height = height;
 	i->addr = mlx_get_data_addr(i->img, &i->bits_per_pixel, &i->line_length, &i->endian);
 }
 
@@ -60,20 +62,10 @@ void	init_cordinate(t_map *map, int i, int j)
 {
 	t_cordinate	c;
 
-	c.x = j - ((map->width - 1) * map->gap / 2) + (j * map->gap);
-	c.y = i - ((map->height - 1) * map->gap / 2) + (i * map->gap);
-	c.z = -map->map[i][j] * (map->gap * 0.15);
-	rotate_z(&c, -35.365 * (M_PI / 180));
-	rotate_x(&c, 45 * (M_PI / 180));
+	c.x = j + (j * map->gap);
+	c.y = i + (i * map->gap);
+	c.z = -map->map[i][j] * (map->gap * 0.2);
 	map->offset[i][j] = c;
-	if (c.x > map->max_x)
-		map->max_x = c.x;
-	if (c.x < map->min_x)
-		map->min_x = c.x;
-	if (c.y > map->max_y)
-		map->max_y = c.y;
-	if (c.y < map->min_y)
-		map->min_y = c.y;
 }
 
 void	make_offset(t_map *map)
