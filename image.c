@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:15:44 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 05:37:09 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 08:02:30 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	draw_dot(t_map *map, t_data *image)
 	int			color;
 
 	i = -1;
-	while (++i < map->height)
+	while (++i < map->map_height)
 	{
 		j = -1;
-		while (++j < map->width)
+		while (++j < map->map_width)
 		{
 			// printf("%ld %ld\n", map->offset[i][j].x, map->offset[i][j].y);
 			offset = map->offset[i][j];

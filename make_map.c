@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:12:26 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 04:03:09 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 08:00:42 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	init_cordinate(t_cordinate **offset, t_map *map)
 
 	i = 0;
 	temp = map->arr;
-	while (i < map->height)
+	while (i < map->map_height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < map->map_width)
 		{
 			offset[i][j].x = j;
 			offset[i][j].y = i;
@@ -57,9 +57,9 @@ t_cordinate	**make_map(t_map *map)
 	int			i;
 
 	i = -1;
-	offset = malloc(sizeof(t_cordinate *) * map->height);
-	while (++i < map->height)
-		offset[i] = malloc(sizeof(t_cordinate) * map->width);
+	offset = malloc(sizeof(t_cordinate *) * map->map_height);
+	while (++i < map->map_height)
+		offset[i] = malloc(sizeof(t_cordinate) * map->map_width);
 	init_cordinate(offset, map);
 	return (offset);
 }
