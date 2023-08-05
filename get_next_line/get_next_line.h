@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:13:12 by sumjo             #+#    #+#             */
-/*   Updated: 2023/05/05 18:22:55 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 03:56:32 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char		*free_arr(char **original);
 int			is_line(char *arr);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1024
 
 # endif
 #endif

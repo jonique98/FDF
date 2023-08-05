@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:11:44 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/05 06:03:05 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/06 03:58:27 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	width_cnt(char *arr)
 		if (is_num(*arr) || *arr == '-')
 		{
 			cnt++;
-			while (is_num(*arr) || *arr == '-')
+			while (is_num(*arr) || *arr == '-' || *arr == ','
+				|| *arr == 'x' || *arr == 'X' || (*arr >= 'a' && *arr <= 'f')
+				|| (*arr >= 'A' && *arr <= 'F'))
 				arr++;
 		}
 		else
@@ -45,16 +47,14 @@ int	width_cnt(char *arr)
 
 int	height_cnt(char *arr)
 {
-	int	i;
 	int	cnt;
 
-	i = 0;
 	cnt = 0;
-	while (i < ft_strlen(arr))
+	while (*arr != 0)
 	{
-		if (arr[i] == '\n')
+		if (*arr == '\n')
 			cnt++;
-		i++;
+		arr++;
 	}
 	return (cnt);
 }

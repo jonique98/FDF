@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:13:21 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/05 21:04:35 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/06 06:38:19 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ void	init_map(int fd, t_map *map)
 	map->arr = make_map_line(fd);
 	map->width = width_cnt(map->arr);
 	map->height = height_cnt(map->arr);
-	map->map = make_map(map);
-	map->offset = malloc(sizeof(t_cordinate *) * map->height);
-	while (++i < map->height)
-		map->offset[i] = malloc(sizeof(t_cordinate) * map->width);
-	init_gap(map);
+	map->offset = make_map(map);
 }
 
 void	init_image(t_map *m, t_data *i)
@@ -49,23 +45,26 @@ void	init_image(t_map *m, t_data *i)
 	int	height;
 
 	i->mlx_ptr = mlx_init();
-	width = abs(m->max_x - m->min_x) + 1;
-	height = abs(m->max_y - m->min_y) + 1;
+	width = m->max_x - m->min_x + 1;
+	height = m->max_y - m->min_y + 1;
 	i->img = mlx_new_image(i->mlx_ptr, width, height);
-	i->win_ptr = mlx_new_window(i->mlx_ptr, width + MAR, height + MAR, "*");
+	i->win_ptr = mlx_new_window(i->mlx_ptr, WIN_MAX_X, WIN_MAX_Y, "*");
 	m->win_width = width;
 	m->win_height = height;
 	i->addr = mlx_get_data_addr(i->img, &i->bits_per_pixel, &i->line_length, &i->endian);
 }
 
-void	init_cordinate(t_map *map, int i, int j)
+void	offset_cordinate(t_map *map, int i, int j)
 {
-	t_cordinate	c;
-
-	c.x = j + (j * map->gap);
-	c.y = i + (i * map->gap);
-	c.z = -map->map[i][j] * (map->gap * 0.2);
-	map->offset[i][j] = c;
+	int	x;
+	int	y;
+	int	z;
+	x = map->offset[i][j].x;
+	y = map->offset[i][j].y;
+	z = map->offset[i][j].z;
+	map->offset[i][j].x = x + (x * map->gap);
+	map->offset[i][j].y = y + (y * map->gap);
+	map->offset[i][j].z = -z * (map->gap * 0.5);
 }
 
 void	make_offset(t_map *map)
@@ -78,6 +77,6 @@ void	make_offset(t_map *map)
 	{
 		j = -1;
 		while (++j < map->width)
-			init_cordinate(map, i, j);
+			offset_cordinate(map, i, j);
 	}
 }

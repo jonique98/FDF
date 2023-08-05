@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:12:26 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/04 00:22:03 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/06 04:03:09 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ char	*make_map_line(int fd)
 	return (arr);
 }
 
-void	make_int_map(int **arr, t_map *map)
+void	init_cordinate(t_cordinate **offset, t_map *map)
 {
-	int		i;
-	int		j;
-	char	*temp;
+	int			i;
+	int			j;
+	char		*temp;
 
 	i = 0;
 	temp = map->arr;
@@ -41,22 +41,25 @@ void	make_int_map(int **arr, t_map *map)
 		j = 0;
 		while (j < map->width)
 		{
-			arr[i][j] = make_num(&temp);
+			offset[i][j].x = j;
+			offset[i][j].y = i;
+			offset[i][j].z = make_num(&temp);
+			make_rgb(&offset[i][j], &temp, i, j);
 			j++;
 		}
 		i++;
 	}
 }
 
-int	**make_map(t_map *map)
+t_cordinate	**make_map(t_map *map)
 {
-	int	**temp;
-	int	i;
+	t_cordinate	**offset;
+	int			i;
 
 	i = -1;
-	temp = malloc(sizeof(int *) * map->height);
+	offset = malloc(sizeof(t_cordinate *) * map->height);
 	while (++i < map->height)
-		temp[i] = malloc(sizeof(int) * map->width);
-	make_int_map(temp, map);
-	return (temp);
+		offset[i] = malloc(sizeof(t_cordinate) * map->width);
+	init_cordinate(offset, map);
+	return (offset);
 }

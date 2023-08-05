@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:06:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/05 21:13:13 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/06 06:36:29 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,19 @@
 # include <math.h>
 #include<stdio.h>
 
-# define DEF 40
-# define WIN_MAX_X 980
-# define WIN_MAX_Y 540
+# define DEF 35
+# define WIN_MAX_X 2560
+# define WIN_MAX_Y 1440
 # define MAR 100
 
 typedef struct c_data
 {
-	int	x;
-	int	y;
-	int	z;
+	long	x;
+	long	y;
+	long	z;
+	int	r;
+	int	g;
+	int	b;
 }		t_cordinate;
 
 typedef struct m_data
@@ -84,12 +87,22 @@ void	draw_dot(t_map *map, t_data *image);
 
 void	algin_image(t_map *map, t_data *image);
 
+t_cordinate	**make_map(t_map *map);
 char	*make_map_line(int fd);
-void	make_int_map(int **arr, t_map *map);
-int		**make_map(t_map *map);
+void	init_cordinate(t_cordinate **offset, t_map *map);
 
 void	dda(t_map * map, t_data *image, t_cordinate offset1, t_cordinate offset2);
 void	draw_line(t_map *map, t_data *image);
+
+void	init_gap(t_map *map);
+void	init_image(t_map *m, t_data *i);
+void	offset_cordinate(t_map *map, int i, int j);
+void	make_offset(t_map *map);
+
+int		make_num_16(char **arr);
+void	make_rgb(t_cordinate *c, char **arr, int i, int j);
+int	rgb(int r, int g, int b);
+
 
 
 #endif

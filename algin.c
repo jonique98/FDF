@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algin.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:16:02 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/05 20:33:55 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/06 05:47:21 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	algin_image(t_map *map, t_data *image)
 	x_gap = 0;
 	y_gap = 0;
 	i = -1;
-	while (map->min_x + x_gap < 0)
-		x_gap++;
-	while (map->min_y + y_gap < 0)
-		y_gap++;
+	x_gap = -map->min_x;
+	y_gap = -map->min_y;
 	while (++i < map->height)
 	{
 		j = -1;
@@ -35,6 +33,10 @@ void	algin_image(t_map *map, t_data *image)
 			map->offset[i][j].y += y_gap;
 		}
 	}
+	map->max_x += x_gap;
+	map->min_x += x_gap;
+	map->max_y += y_gap;
+	map->min_y += y_gap;
 }
 
 // void	algin_image(t_map *map, t_data *image)

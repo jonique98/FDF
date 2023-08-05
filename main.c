@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/05 21:02:20 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/06 06:36:18 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include<stdio.h>
+#include <stdio.h>
 
 int	main(int ac, char **av)
 {
@@ -21,13 +21,14 @@ int	main(int ac, char **av)
 
 	fd = open(av[1], O_RDONLY);
 	init_map(fd, &map);
+	init_gap(&map);
 	make_offset(&map);
 	projection(&map);
-	init_image(&map, &image);
 	algin_image(&map, &image);
+	init_image(&map, &image);
 	draw_dot(&map, &image);
 	draw_line(&map, &image);
-	mlx_put_image_to_window(image.mlx_ptr, image.win_ptr, image.img, MAR / 2, MAR / 2);
+	mlx_put_image_to_window(image.mlx_ptr, image.win_ptr, image.img, (WIN_MAX_X - map.max_x) / 2, (WIN_MAX_Y - map.max_y) / 2);
 	mlx_loop(image.mlx_ptr);
 	return (0);
 }
