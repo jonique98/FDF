@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:06:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 07:59:54 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 10:44:03 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ typedef struct s_modify
 	double	radian_z;
 }		t_modify;
 
+typedef struct s_param
+{
+	t_map		*map;
+	t_data		*image;
+	t_modify	*mod;
+}		t_param;
+
 
 t_cordinate		**make_map(t_map *map);
 char			*make_map_line(int fd);
@@ -84,7 +91,7 @@ void			draw_line(t_map *map, t_data *image);
 void			init_map(int fd, t_map *map);
 void			make_offset(t_map *map, t_modify *mod);
 void			init_image(t_map *m, t_data *i);
-void			algin_image(t_map *map, t_data *image, t_modify *mod);
+void			algin_image(t_map *map, t_modify *mod);
 void			draw_dot(t_map *map, t_data *image);
 void			projection(t_map *map, t_modify *mod);
 
@@ -112,5 +119,8 @@ int				rgb(int r, int g, int b);
 void			set_radian(t_modify *modify, double x, double y, double z);
 void			set_move_val(t_map *map, t_modify *mod, int x_move, int y_move);
 void			set_gap(t_map *map, t_modify *mod, int gap, int a);
+void			logic(t_map *map, t_data *image, t_modify *modify);
+
+int  close1(int keycode, t_param *param);
 
 #endif

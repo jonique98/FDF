@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 02:42:50 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 08:02:10 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 09:15:45 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void draw_line(t_map *map, t_data *image)
 	int max_width = map->map_width;
 
 	for (int i = 0; i < max_height; i++)
-	{
+	{write(1, "hi\n", 3);
 		for (int j = 0; j < max_width; j++)
 		{
 			if (i + 1 < max_height)

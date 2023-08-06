@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:13:21 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 08:07:21 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 11:02:11 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_image(t_map *m, t_data *i)
 	i->mlx = mlx_init();
 	width = m->max_x - m->min_x + 1;
 	height = m->max_y - m->min_y + 1;
-	i->img = mlx_new_image(i->mlx, width, height);
+	i->img = mlx_new_image(i->mlx, WIN_MAX_X, WIN_MAX_Y);
 	i->win = mlx_new_window(i->mlx, WIN_MAX_X, WIN_MAX_Y, "*");
 	m->win_width = width;
 	m->win_height = height;
@@ -55,7 +55,7 @@ void	offset_cordinate(t_map *map, t_modify *mod, int i, int j)
 	z = map->offset[i][j].z;
 	map->offset[i][j].x = x + (x * mod->gap);
 	map->offset[i][j].y = y + (y * mod->gap);
-	map->offset[i][j].z = -z * (mod->gap * 0.30);
+	map->offset[i][j].z = -z * (mod->gap * 0.3);
 }
 
 void	make_offset(t_map *map, t_modify *mod)
