@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:15:44 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 09:15:40 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 20:33:31 by josumin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	draw_dot(t_map *map, t_data *image)
 		j = -1;
 		while (++j < map->map_width)
 		{
-			// printf("%ld %ld\n", map->offset[i][j].x, map->offset[i][j].y);
 			offset = map->offset[i][j];
 			color = rgb(offset.r, offset.g, offset.b);
-			my_mlx_pixel_put(image, map->offset[i][j].x, map->offset[i][j].y, color);
+			if (map->offset[i][j].x >= 0 && map->offset[i][j].x < WIN_MAX_X
+				&& map->offset[i][j].y >= 0 && map->offset[i][j].y < WIN_MAX_Y)
+				my_mlx_pixel_put(image, round(map->offset[i][j].x), round(map->offset[i][j].y), color);
 		}
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 07:31:28 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/06 10:39:44 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 20:24:19 by josumin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,8 @@ void	set_radian(t_modify *modify, double x, double y, double z)
 	modify->radian_z = z * (M_PI / 180);
 }
 
-void	set_move_val(t_map *map, t_modify *mod, int x_move, int y_move)
+void	set_move_val(t_modify *mod, int x_move, int y_move)
 {
 	mod->x_move = x_move;
 	mod->y_move = y_move;
-}
-
-void	set_gap(t_map *map, t_modify *mod, int gap, int a)
-{
-	int	width;
-	int	height;
-
-	mod->gap = gap;
-	if (a == 1)
-		return ;
-	width = map->map_width;
-	height = map->map_height;
-	while (mod->gap * width > WIN_MAX_X || mod->gap * height > WIN_MAX_Y)
-		mod->gap--;
 }

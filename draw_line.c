@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 02:42:50 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 09:15:45 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/06 20:36:19 by josumin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	dda(t_map *map, t_data *image, t_cordinate offset1, t_cordinate offset2)
 	double	y_incre;
 	long	step;
 
-	if (labs(offset2.x - offset1.x) > labs(offset2.y - offset1.y))
-		step = labs(offset2.x - offset1.x);
+	if (fabs(offset2.x - offset1.x) > fabs(offset2.y - offset1.y))
+		step = fabs(offset2.x - offset1.x);
 	else
-		step = labs(offset2.y - offset1.y);
+		step = fabs(offset2.y - offset1.y);
 	if (step == 0)
 		step = 100;
 	x_incre = (double)(offset2.x - offset1.x) / step;
@@ -38,7 +38,8 @@ void	dda(t_map *map, t_data *image, t_cordinate offset1, t_cordinate offset2)
 	double b = offset1.b;
 	while (step >= 0)
 	{
-		my_mlx_pixel_put(image, round(x_), round(y_), rgb(round(r), round(g), round(b)));
+		if (x_ >= 0 && y_ >= 0 && x_ < WIN_MAX_X && y_ < WIN_MAX_Y)
+			my_mlx_pixel_put(image, round(x_), round(y_), rgb(round(r), round(g), round(b)));
 		x_ += x_incre;
 		y_ += y_incre;
 		r += r_change;
@@ -55,13 +56,13 @@ void	dda(t_map *map, t_data *image, t_cordinate offset1, t_cordinate offset2)
 // 		for(int j = map->width -1; j >= 0; j--)
 // 		{
 // 			if (i - 1 >= 0)
-// 				dda(map, image, map->offset[i][j], map->offset[i - 1][j]);
+// 				dda(map, image, os[i][j], os[i - 1][j]);
 // 			if (j - 1 >= 0)
-// 				dda(map, image, map->offset[i][j], map->offset[i][j - 1]);
+// 				dda(map, image, os[i][j], os[i][j - 1]);
 // 			// if (j - 1 >= 0 && i - 1 >= 0)
 // 			// {
-// 			// 	dda(map, image, map->offset[i][j], map->offset[i - 1][j - 1]);
-// 			// 	dda(map, image, map->offset[i-1][j], map->offset[i][j - 1]);
+// 			// 	dda(map, image, os[i][j], os[i - 1][j - 1]);
+// 			// 	dda(map, image, os[i-1][j], os[i][j - 1]);
 // 			// }
 // 		}
 // 	}
@@ -69,23 +70,24 @@ void	dda(t_map *map, t_data *image, t_cordinate offset1, t_cordinate offset2)
 
 void draw_line(t_map *map, t_data *image)
 {
-	int max_height = map->map_height;
-	int max_width = map->map_width;
+	int			height;
+	int			width;
+	t_cordinate	**os;
 
-	for (int i = 0; i < max_height; i++)
-	{write(1, "hi\n", 3);
-		for (int j = 0; j < max_width; j++)
+	height = map->map_height;
+	width = map->map_width;
+	os = map->offset;
+
+	while (--height >= 0)
+	{
+		while (--width >= 0)
 		{
-			if (i + 1 < max_height)
-				dda(map, image, map->offset[i][j], map->offset[i + 1][j]);
-			if (j + 1 < max_width)
-				dda(map, image, map->offset[i][j], map->offset[i][j + 1]);
-			if (j + 1 < max_width && i + 1 < max_height)
-			{
-				dda(map, image, map->offset[i][j], map->offset[i + 1][j + 1]);
-				dda(map, image, map->offset[i + 1][j], map->offset[i][j + 1]);
-			}
+			if (width - 1 >= 0)
+				dda(map, image, os[height][width], os[height][width - 1]);
+			if (height - 1 >= 0)
+				dda(map, image, os[height][width], os[height - 1][width]);
 		}
+		width = map->map_width;
 	}
 }
 
