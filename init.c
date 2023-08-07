@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:13:21 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 20:09:37 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/07 09:43:42 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 void	init_map(char *av, t_map *map)
 {
 	int	i;
-	int fd;
+	int	fd;
 
 	i = -1;
 	fd = open(av, O_RDONLY);
-	map->max_x = -2147482648;
-	map->min_x = 2147483647;
-	map->max_y = -2147483648;
-	map->min_y = 2147483647;
+	map->max_x = 0;
+	map->min_x = 0;
+	map->max_y = 0;
+	map->min_y = 0;
 	map->arr = make_map_line(fd);
 	map->map_width = width_cnt(map->arr);
 	map->map_height = height_cnt(map->arr);
 	map->offset = make_map(map);
+	map->center_x = WIN_MAX_X / 2;
+	map->center_y = WIN_MAX_Y / 2;
 }
 
 void	init_image(t_data *i)
@@ -49,6 +51,14 @@ void	offset_cordinate(t_map *map, t_modify *mod, int i, int j)
 	map->offset[i][j].x = x + (i * mod->gap);
 	map->offset[i][j].y = y + (j * mod->gap);
 	map->offset[i][j].z = -z * (mod->gap * 0.3);
+	if (map->offset[i][j].x > map->max_x)
+		map->max_x = map->offset[i][j].x;
+	if (map->offset[i][j].x < map->min_x)
+		map->min_x = map->offset[i][j].x;
+	if (map->offset[i][j].y > map->max_y)
+		map->max_y = map->offset[i][j].y;
+	if (map->offset[i][j].y < map->min_y)
+		map->min_y = map->offset[i][j].y;
 }
 
 void	make_offset(t_map *map, t_modify *mod)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:06:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 20:35:12 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/07 09:27:24 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@
 # include <math.h>
 # include <stdio.h>
 
-# define DEF 35
+# define DEF 1
 # define WIN_MAX_X 1920
 # define WIN_MAX_Y 1080
 # define MAR 10
+# define MOUSE_LEFT_BUTTON 1
+# define MOUSE_SCROLL_UP 4
+# define MOUSE_SCROLL_DOWN 5 
+
 
 typedef struct c_data
 {
@@ -41,15 +45,13 @@ typedef struct m_data
 	t_cordinate	**offset;
 	int			map_width;
 	int			map_height;
-	int			max_x;
-	int			min_x;
-	int			max_y;
-	int			min_y;
+	long long	max_x;
+	long long	min_x;
+	long long	max_y;
+	long long	min_y;
+	long long	center_x;
+	long long	center_y;
 	char		*arr;
-	int			win_width;
-	int			win_height;
-	int			xm;
-	int			ym;
 }	t_map;
 
 
@@ -68,11 +70,13 @@ typedef struct s_data
 typedef struct s_modify
 {
 	double		gap;
-	double		x_move;
-	double		y_move;
-	double	radian_x;
-	double	radian_y;
-	double	radian_z;
+	double		scale;
+	double		ratio;
+	int			x_move;
+	int			y_move;
+	double		radian_x;
+	double		radian_y;
+	double		radian_z;
 }		t_modify;
 
 typedef struct s_param
@@ -83,8 +87,12 @@ typedef struct s_param
 	int			mouse_dragging;
 	int			mouse_x;
 	int			mouse_y;
+	int			z_rotate;
 }		t_param;
 
+
+void			update_max_min(t_map *map);
+void			update_center(t_map *map);
 
 t_cordinate		**make_map(t_map *map);
 char			*make_map_line(int fd);
@@ -97,9 +105,9 @@ void			algin_image(t_map *map, t_modify *mod);
 void			draw_dot(t_map *map, t_data *image);
 void			projection(t_map *map, t_modify *mod);
 
-void			rotate_x(t_cordinate *c, double gamma);
-void			rotate_y(t_cordinate *c, double beta);
-void			rotate_z(t_cordinate *c, double alpha);
+void			rotate_x(t_cordinate *center, double gamma);
+void			rotate_y(t_cordinate *center, double beta);
+void			rotate_z(t_cordinate *center, double alpha);
 
 int				is_num(char a);
 int				width_cnt(char *arr);
@@ -111,24 +119,34 @@ void			draw_dot(t_map *map, t_data *image);
 
 void			offset_cordinate(t_map *map, t_modify *mod, int i, int j);
 void			make_offset(t_map *map, t_modify *mod);
-void			init_gap(t_map *map, t_modify *mod, int gap, int a);
+void	init_gap(t_map *map, t_modify *modify);
 void			init_image(t_data *i);
 
 int				make_num_16(char **arr);
 void			make_rgb(t_cordinate *c, char **arr, int i, int j);
 int				rgb(int r, int g, int b);
+void			modify_scale(t_map *map, t_modify *mod, int a);
 
 void			set_radian(t_modify *modify, double x, double y, double z);
 void			set_move_val(t_modify *mod, int x_move, int y_move);
 void			set_gap(t_map *map, t_modify *mod, int gap);
 void			logic(t_map *map, t_data *image, t_modify *modify);
 
-void move(t_param *p, int x_move, int y_move);
-void	draw(t_param *p);
-void scale(t_param *param, double gap);
-void	rotate(t_param *param, double x, double y, double z);
-	void	init_move(t_map *map, t_modify *modify);
-	
-int  transform(int keycode, t_param *param);
+void			move_image(t_map *map, t_modify *mod);
+void			move(t_param *p, int x_move, int y_move);
+void			draw(t_param *p);
+void 			scale(t_param *param, double scale);
+void			rotate(t_param *param, double x, double y, double z);
+void			init_move(t_map *map, t_modify *modify, int center_x, int center_y);
+int				rotate_end(int keycode, t_param *param);
+
+int				mouse_event_draw(int x, int y, t_param *p);
+int				mouse_event_down(int keycode, int x, int y, t_param *p);
+int				mouse_event_up(int keycode, int x, int y, t_param *p);
+void			update_max_min(t_map *map);
+void			destroy(t_param *p);
+int				rotate_end(int keycode, t_param *p);
+void			make_new_img(t_param *p);
+
 
 #endif
