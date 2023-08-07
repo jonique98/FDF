@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 02:42:50 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/07 09:28:12 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/07 10:04:38 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,11 @@ void	draw_line(t_map *map, t_data *image)
 				bresenham(map, image, os[height][width], os[height][width - 1]);
 			if (height - 1 >= 0)
 				bresenham(map, image, os[height][width], os[height - 1][width]);
+			if (width - 1 >= 0 && height - 1 >= 0)
+				bresenham(map, image, os[height][width], os[height - 1][width - 1]);
+			if (width + 1 < map->map_width && height - 1 >= 0)
+				bresenham(map, image, os[height][width], os[height - 1][width + 1]);
+			
 		}
 		width = map->map_width;
 	}
