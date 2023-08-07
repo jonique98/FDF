@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:24:03 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/07 09:44:40 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/07 09:51:45 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	modify_scale(t_map *map, t_modify *mod, int a)
 				map->offset[i][j].x = map->offset[i][j].x * mod->scale;
 				map->offset[i][j].y = map->offset[i][j].y * mod->scale;
 			if (a == 1)
-				map->offset[i][j].z = -map->offset[i][j].z * (mod->scale * 0.3);
+				map->offset[i][j].z = -map->offset[i][j].z * (mod->scale * 0.4);
 			else
 				map->offset[i][j].z = map->offset[i][j].z * mod->scale;
 		}

@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:19:13 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/07 09:44:49 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/07 09:51:04 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_modify(t_modify *modify)
 
 void	init_gap(t_map *map, t_modify *modify)
 {
-	while (map->map_width * modify->gap < WIN_MAX_X && map->map_height * modify->gap < WIN_MAX_Y)
+	while (map->map_width * modify->gap < WIN_MAX_X / 2 || map->map_height * modify->gap < WIN_MAX_Y / 2)
 		modify->gap++;
 	modify->ratio = modify->gap;
 	modify->scale = modify->gap;

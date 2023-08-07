@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:17:32 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/07 09:42:46 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/07 09:50:04 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	destroy(t_param *p)
 	while (++i < p->map->map_height)
 		free(p->map->offset[i]);
 	free(p->map->offset);
-	free(p->map);
-	free(p->image);
-	free(p->mod);
-	free(p);
+	// free(p->map);
+	// free(p->image);
+	// free(p->mod);
+	// free(p);
 	mlx_destroy_image(p->image->mlx, p->image->img);
 	exit(0);
 }
@@ -93,19 +93,20 @@ int	rotate_end(int keycode, t_param *p)
 	else if (keycode == 6 && p->z_rotate == 0)
 		p->z_rotate = 1;
 	if (keycode == 123 && p->z_rotate == 0)
-		rotate(p, 0, 20, 0);
+		rotate(p, 0, 10, 0);
 	else if (keycode == 123 && p->z_rotate == 1)
-		rotate(p, 0, 0, 20);
+		rotate(p, 0, 0, 10);
 	else if (keycode == 124 && p->z_rotate == 0)
-		rotate(p, 0, -20, 0);
+		rotate(p, 0, -10, 0);
 	else if (keycode == 124 && p->z_rotate == 1)
-		rotate(p, 0, 0, -20);
+		rotate(p, 0, 0, -10);
 	else if (keycode == 125)
-		rotate(p, -20, 0, 0);
+		rotate(p, -10, 0, 0);
 	else if (keycode == 126)
-		rotate(p, 20, 0, 0);
+		rotate(p, 10, 0, 0);
 	init_move(p->map, p->mod, p->map->center_x, p->map->center_y);
 	algin_image(p->map, p->mod);
 	draw(p);
 	mlx_put_image_to_window(p->image->mlx, p->image->win, p->image->img, MAR / 2, MAR / 2);
+	return (0);
 }
