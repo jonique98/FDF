@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:43:57 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 05:59:23 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 07:45:32 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int ac, char **av)
 	t_modify	modify;
 	t_param		param;
 
+	if (ac != 2)
+		return (0);
 	init_image(&image);
 	init_map(av[1], &map);
 	init_param(&param, &map, &modify, &image);
@@ -33,6 +35,5 @@ int	main(int ac, char **av)
 	mlx_hook(image.win, 5, 0, mouse_event_up, &param);
 	mlx_hook(image.win, 6, 0, mouse_event_draw, &param);
 	mlx_hook(image.win, 2, 0, rotate_end, &param);
-
 	mlx_loop(image.mlx);
 }

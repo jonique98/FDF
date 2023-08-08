@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 00:50:19 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 04:54:59 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 07:53:41 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
 }
-
 
 void	make_rgb(t_cordinate *c, char **arr, int i, int j)
 {
@@ -38,8 +37,8 @@ void	make_rgb(t_cordinate *c, char **arr, int i, int j)
 	}
 	else
 	{
-		c->r = 100;
-		c->g = 100;
-		c->b = 100;
+		c->r = 0;
+		c->g = 0;
+		c->b = 0;
 	}
 }

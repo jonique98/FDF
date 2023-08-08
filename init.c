@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:13:21 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 06:03:07 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 07:48:35 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,3 @@ void	init_image(t_data *i)
 	i->addr = mlx_get_data_addr(i->img, &i->bits_per_pixel, \
 	&i->line_length, &i->endian);
 }
-

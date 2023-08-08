@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:06:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 02:57:33 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 06:10:35 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,7 @@ int				rotate_end(int keycode, t_param *p);
 void			make_new_img(t_param *p);
 void			init_param(t_param *param, t_map *map, \
 				t_modify *modify, t_data *image);
+void			wrong_char_check(char *arr);
+void			size_check(t_map *map, char *arr);
 
 #endif

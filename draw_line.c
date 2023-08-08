@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 02:42:50 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 00:10:50 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 07:22:30 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ void bresenham(t_map *map, t_data *image, t_cordinate p1, t_cordinate p2)
 	while (1)
 	{
 		if (x1 >= 0 && y1 >= 0 && x1 < WIN_MAX_X && y1 < WIN_MAX_Y)
-			my_mlx_pixel_put(image, x1, y1, rgb(round(p1.r), round(p1.g), round(p1.b)));
-
+			my_mlx_pixel_put(image, x1, y1, rgb(round(p1.r), \
+			round(p1.g), round(p1.b)));
 		if (x1 == x2 && y1 == y2)
 			break ;
 
-		int e2 = 2 * err;
+		int e2 = err;
 		if (e2 > -dy)
 		{
 			err -= dy;

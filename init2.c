@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:19:13 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 06:04:25 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 06:06:43 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,3 @@ void	init_param(t_param *param, t_map *map, t_modify *modify, t_data *image)
 	param->image = image;
 	param->z_rotate = 0;
 }
-
