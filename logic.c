@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:24:03 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/07 09:51:45 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 01:44:18 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	move(t_param *p, int x_move, int y_move)
 {
-	set_move_val(p->mod, x_move, y_move);
+	init_move_val(p->mod, x_move, y_move);
 	move_image(p->map, p->mod);
 }
 
@@ -52,8 +52,8 @@ void	modify_scale(t_map *map, t_modify *mod, int a)
 void	scale(t_param *param, double scale)
 {
 	if (param->mod->ratio * scale < param->mod->gap / 20
-		|| param->map->max_x * scale > 100000
-		|| param->map->max_y * scale > 100000)
+		|| param->map->max_x * scale > 80000
+		|| param->map->max_y * scale > 80000)
 		return ;
 	param->mod->ratio *= scale;
 	param->mod->scale = scale;

@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 07:31:28 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/07 09:31:13 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 06:04:41 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	set_radian(t_modify *modify, double x, double y, double z)
 	modify->radian_z = z * (M_PI / 180);
 }
 
-void	set_move_val(t_modify *mod, int x_move, int y_move)
+void	set_move(t_map *map, t_modify *modify, \
+		long long center_x, long long center_y)
 {
-	mod->x_move = x_move;
-	mod->y_move = y_move;
+	modify->x_move = -(map->max_x + map->min_x) / 2 + center_x;
+	modify->y_move = -(map->max_y + map->min_y) / 2 + center_y;
 }

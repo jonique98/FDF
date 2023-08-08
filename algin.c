@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:16:02 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/07 09:43:21 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 01:44:22 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,10 @@ void	move_image(t_map *map, t_modify *mod)
 	map->min_y += mod->y_move;
 	map->center_x += mod->x_move;
 	map->center_y += mod->y_move;
+}
+
+void	init_move_val(t_modify *mod, int x_move, int y_move)
+{
+	mod->x_move = x_move;
+	mod->y_move = y_move;
 }

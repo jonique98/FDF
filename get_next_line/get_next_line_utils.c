@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 05:52:46 by sumjo             #+#    #+#             */
-/*   Updated: 2023/05/05 21:39:39 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 03:16:57 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ int	ft_strlen(char	*s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2, int i, int j)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char		*arr;
+	char	*arr;
+	int		i;
+	int		j;
 
-	if (s1 == 0 && s2 == 0)
-		return (0);
+	i = 0;
+	j = 0;
 	arr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!arr)
 	{
@@ -64,9 +66,10 @@ int	is_line(char *arr)
 	return (0);
 }
 
-char	*free_arr(char **original)
+char	*free_arr(char **original, int *error)
 {
 	free((*original));
 	*original = 0;
+	*error = 1;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:11:44 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 03:58:27 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 05:58:51 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,34 @@ int	make_num(char **arr)
 			*arr = *arr + 1;
 		}
 	}
+	else
+		exit(0);
 	return (n * minus);
+}
+
+int	make_num_16(char **arr)
+{
+	int	num;
+	int	i;
+
+	num = 0;
+	i = 0;
+	if (!is_num(**arr) || !(**arr >= 'a' && **arr <= 'f') \
+		|| **arr != 'F')
+		exit(0);
+	while (i < 2 && (is_num(**arr) || (**arr >= 'a' && **arr <= 'f') \
+		|| **arr == 'F'))
+	{
+		if (is_num(**arr))
+			num = num * 16 + (**arr - '0');
+		else if (**arr >= 'a' && **arr <= 'f')
+			num = num * 16 + (**arr - 'a' + 10);
+		else if (**arr == 'F')
+			num = num * 16 + 5;
+		else
+			exit(0);
+		(*arr)++;
+		i++;
+	}
+	return (num);
 }

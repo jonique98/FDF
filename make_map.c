@@ -6,13 +6,13 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:12:26 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/06 08:00:42 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 04:01:38 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*make_map_line(int fd)
+char	*make_map_line(int fd, int *error)
 {
 	char	*arr;
 	char	*temp;
@@ -20,10 +20,11 @@ char	*make_map_line(int fd)
 	arr = 0;
 	while (1)
 	{
-		temp = get_next_line(fd);
+		temp = get_next_line(fd, error);
 		if (temp == 0)
 			break ;
-		arr = ft_strjoin(arr, temp, 0, 0);
+		arr = ft_strjoin(arr, temp);
+		free(temp);
 	}
 	return (arr);
 }
@@ -58,8 +59,14 @@ t_cordinate	**make_map(t_map *map)
 
 	i = -1;
 	offset = malloc(sizeof(t_cordinate *) * map->map_height);
+	if (!offset)
+		exit(0);
 	while (++i < map->map_height)
+	{
 		offset[i] = malloc(sizeof(t_cordinate) * map->map_width);
+		if (!offset[i])
+			exit(0);
+	}
 	init_cordinate(offset, map);
 	return (offset);
 }

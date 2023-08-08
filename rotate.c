@@ -1,51 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.>c                                           :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.>42.>fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 00:13:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/05 20:53:10 by josumin          ###   ########.>fr       */
+/*   Created: 2023/08/09 00:36:48 by sumjo             #+#    #+#             */
+/*   Updated: 2023/08/09 06:01:51 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-#include <math.h>
-
-// void	rotate_x(t_cordinate *c, double gamma)
-// {
-// 	double	prev_y;
-// 	double	prev_z;
-
-// 	prev_y = c->y;
-// 	prev_z = c->z;
-// 	c->y = lround((prev_y * cos(gamma)) + round(prev_z * sin(gamma)));
-// 	c->z = lround((-prev_y * sin(gamma)) + round(prev_z * cos(gamma)));
-// }
-
-// void	rotate_y(t_cordinate *c, double beta)
-// {
-// 	double	prev_x;
-// 	double	prev_z;
-
-// 	prev_x = c->x;
-// 	prev_z = c->z;
-// 	c->x = round((prev_x * cos(beta)) + round(prev_z * sin(beta)));
-// 	c->z = round((-prev_x * sin(beta)) + round(prev_z * cos(beta)));
-// }
-
-// void	rotate_z(t_cordinate *c, double alpha)
-// {
-// 	double	prev_x;
-// 	double	prev_y;
-
-// 	prev_x = c->x;
-// 	prev_y = c->y;
-// 	c->x = round(prev_x * cos(alpha)) + round(prev_y * sin(alpha));
-// 	c->y = round(-prev_x * sin(alpha)) + round(prev_y *cos(alpha));
-// }
 
 void	rotate_x(t_cordinate *c, double gamma)
 {

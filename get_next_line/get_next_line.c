@@ -3,38 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:27:54 by sumjo             #+#    #+#             */
-/*   Updated: 2023/05/08 22:26:41 by josumin          ###   ########.fr       */
+/*   Updated: 2023/08/09 03:11:44 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 #include "get_next_line.h"
 
-char	*save_line(char **backup, char *arr, int i, int j)
-{
-	char		*line;
 
+char	*ft_free(char **backup)
+{
+	free(*backup);
+	*backup = 0;
+	return (0);
+}
+
+char	*save_line(char **backup, char *arr, int *error)
+{
+	char	*line;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
 	if (!arr || *arr == '\0')
-		return (free_arr(backup));
+		return (ft_free(backup));
 	while (*arr && *arr != '\n')
 		arr++;
 	if (*arr == 0)
-		return (free_arr(backup));
+		return (ft_free(backup));
 	line = malloc(ft_strlen(arr));
-	if (!line || ft_strlen(arr) == 0)
-		return (free_arr(backup));
+	if (!line)
+		return (free_arr(backup, error));
 	i++;
 	while (arr[i])
 		line[j++] = arr[i++];
 	line[j] = '\0';
-	free_arr(backup);
+	free(*backup);
 	return (line);
 }
 
-char	*cut_line(char **backup, char *arr)
+char	*cut_line(char **backup, char *arr, int *error)
 {
 	char	*line;
 	int		i;
@@ -50,7 +62,7 @@ char	*cut_line(char **backup, char *arr)
 		i--;
 	line = malloc(i + 2);
 	if (!line)
-		return (free_arr(backup));
+		return (free_arr(backup, error));
 	while (j <= i)
 	{
 		line[j] = arr[j];
@@ -60,23 +72,27 @@ char	*cut_line(char **backup, char *arr)
 	return (line);
 }
 
-char	*read_buff(int fd, char **backup, char *arr, int read_num)
+char	*read_buff(int fd, char **backup, char *arr, int *error)
 {
 	char	*buff;
+	int		read_num;
 
+	read_num = 1;
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
-		return (free_arr(backup));
+		return (free_arr(backup, error));
 	while (read_num != 0)
 	{
 		read_num = read(fd, buff, BUFFER_SIZE);
 		if (read_num == -1)
 		{
 			free (buff);
-			return (free_arr(backup));
+			return (free_arr(backup, error));
 		}
 		buff[read_num] = '\0';
-		arr = ft_strjoin(arr, buff, 0, 0);
+		arr = ft_strjoin(arr, buff);
+		if (arr == 0)
+			return (free_arr(backup, error));
 		if (is_line(arr))
 			break ;
 	}
@@ -84,20 +100,18 @@ char	*read_buff(int fd, char **backup, char *arr, int read_num)
 	return (arr);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int *error)
 {
 	static char		*arr;
 	char			*temp;
-	int				read_num;
 
-	read_num = 1;
 	temp = 0;
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (0);
-	if (is_line(arr) != 1)
-		arr = read_buff(fd, &arr, arr, read_num);
-	temp = cut_line(&arr, arr);
-	arr = save_line(&arr, arr, 0, 0);
+	if (!is_line(arr))
+		arr = read_buff(fd, &arr, arr, error);
+	temp = cut_line(&arr, arr, error);
+	arr = save_line(&arr, arr, error);
 	return (temp);
 }
 

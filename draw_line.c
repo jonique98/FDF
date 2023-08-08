@@ -6,48 +6,48 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 02:42:50 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/07 10:04:38 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 00:10:50 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// void	dda(t_map *map, t_data *image, t_cordinate offset1, t_cordinate offset2)
-// {
-// 	double	x_;
-// 	double	y_;
-// 	double	x_incre;
-// 	double	y_incre;
-// 	long	step;
+void	dda(t_map *map, t_data *image, t_cordinate offset1, t_cordinate offset2)
+{
+	double	x_;
+	double	y_;
+	double	x_incre;
+	double	y_incre;
+	long	step;
 
-// 	if (fabs(offset2.x - offset1.x) > fabs(offset2.y - offset1.y))
-// 		step = fabs(offset2.x - offset1.x);
-// 	else
-// 		step = fabs(offset2.y - offset1.y);
-// 	if (step == 0)
-// 		step = 100;
-// 	x_incre = (double)(offset2.x - offset1.x) / step;
-// 	y_incre = (double)(offset2.y - offset1.y) / step;
-// 	x_ = offset1.x;
-// 	y_ = offset1.y;
-// 	double r_change = (double)(offset1.r - offset2.r) / step;
-// 	double g_change = (double)(offset1.g - offset2.g) / step;
-// 	double b_change = (double)(offset1.b - offset2.b) / step;
-// 	double r = offset1.r;
-// 	double g = offset1.g;
-// 	double b = offset1.b;
-// 	while (step >= 0)
-// 	{
-// 		if (x_ >= 0 && y_ >= 0 && x_ < WIN_MAX_X && y_ < WIN_MAX_Y)
-// 			my_mlx_pixel_put(image, round(x_), round(y_), rgb(round(r), round(g), round(b)));
-// 		x_ += x_incre;
-// 		y_ += y_incre;
-// 		r += r_change;
-// 		g += g_change;
-// 		b += b_change;
-// 		step--;
-// 	}
-// }
+	if (fabs(offset2.x - offset1.x) > fabs(offset2.y - offset1.y))
+		step = fabs(offset2.x - offset1.x);
+	else
+		step = fabs(offset2.y - offset1.y);
+	if (step == 0)
+		step = 100;
+	x_incre = (double)(offset2.x - offset1.x) / step;
+	y_incre = (double)(offset2.y - offset1.y) / step;
+	x_ = offset1.x;
+	y_ = offset1.y;
+	double r_change = (double)(offset1.r - offset2.r) / step;
+	double g_change = (double)(offset1.g - offset2.g) / step;
+	double b_change = (double)(offset1.b - offset2.b) / step;
+	double r = offset1.r;
+	double g = offset1.g;
+	double b = offset1.b;
+	while (step >= 0)
+	{
+		if (x_ >= 0 && y_ >= 0 && x_ < WIN_MAX_X && y_ < WIN_MAX_Y)
+			my_mlx_pixel_put(image, round(x_), round(y_), rgb(round(r), round(g), round(b)));
+		x_ += x_incre;
+		y_ += y_incre;
+		r += r_change;
+		g += g_change;
+		b += b_change;
+		step--;
+	}
+}
 
 // // void draw_line(t_map *map, t_data *image)
 // // {
@@ -111,7 +111,7 @@ void bresenham(t_map *map, t_data *image, t_cordinate p1, t_cordinate p2)
 			my_mlx_pixel_put(image, x1, y1, rgb(round(p1.r), round(p1.g), round(p1.b)));
 
 		if (x1 == x2 && y1 == y2)
-			break;
+			break ;
 
 		int e2 = 2 * err;
 		if (e2 > -dy)
@@ -136,20 +136,14 @@ void	draw_line(t_map *map, t_data *image)
 	height = map->map_height;
 	width = map->map_width;
 	os = map->offset;
-
 	while (--height >= 0)
 	{
 		while (--width >= 0)
 		{
-			if (width - 1 >= 0)
-				bresenham(map, image, os[height][width], os[height][width - 1]);
 			if (height - 1 >= 0)
 				bresenham(map, image, os[height][width], os[height - 1][width]);
-			if (width - 1 >= 0 && height - 1 >= 0)
-				bresenham(map, image, os[height][width], os[height - 1][width - 1]);
-			if (width + 1 < map->map_width && height - 1 >= 0)
-				bresenham(map, image, os[height][width], os[height - 1][width + 1]);
-			
+			if (width - 1 >= 0)
+				bresenham(map, image, os[height][width], os[height][width - 1]);
 		}
 		width = map->map_width;
 	}

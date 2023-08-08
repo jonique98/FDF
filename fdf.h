@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:06:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/07 09:47:22 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 02:57:33 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define MOUSE_LEFT_BUTTON 1
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5 
-
+# define KEY_ESC 53
 
 typedef struct c_data
 {
@@ -72,8 +72,8 @@ typedef struct s_modify
 	double		gap;
 	double		scale;
 	double		ratio;
-	int			x_move;
-	int			y_move;
+	long long	x_move;
+	long long	y_move;
 	double		radian_x;
 	double		radian_y;
 	double		radian_z;
@@ -90,13 +90,13 @@ typedef struct s_param
 	int			z_rotate;
 }		t_param;
 
-
 void			update_max_min(t_map *map);
 void			update_center(t_map *map);
 
 t_cordinate		**make_map(t_map *map);
-char			*make_map_line(int fd);
-void			dda(t_map * map, t_data *image, t_cordinate offset1, t_cordinate offset2);
+char			*make_map_line(int fd, int *error);
+void			dda(t_map *map, t_data *image, \
+				t_cordinate offset1, t_cordinate offset2);
 void			draw_line(t_map *map, t_data *image);
 
 void			init_map(char *av, t_map *map);
@@ -119,7 +119,7 @@ void			draw_dot(t_map *map, t_data *image);
 
 void			offset_cordinate(t_map *map, t_modify *mod, int i, int j);
 void			make_offset(t_map *map, t_modify *mod);
-void	init_gap(t_map *map, t_modify *modify);
+void			init_gap(t_map *map, t_modify *modify);
 void			init_image(t_data *i);
 
 int				make_num_16(char **arr);
@@ -128,16 +128,17 @@ int				rgb(int r, int g, int b);
 void			modify_scale(t_map *map, t_modify *mod, int a);
 
 void			set_radian(t_modify *modify, double x, double y, double z);
-void			set_move_val(t_modify *mod, int x_move, int y_move);
+void			init_move_val(t_modify *mod, int x_move, int y_move);
 void			set_gap(t_map *map, t_modify *mod, int gap);
 void			logic(t_map *map, t_data *image, t_modify *modify);
 
 void			move_image(t_map *map, t_modify *mod);
 void			move(t_param *p, int x_move, int y_move);
 void			draw(t_param *p);
-void 			scale(t_param *param, double scale);
+void			scale(t_param *param, double scale);
 void			rotate(t_param *param, double x, double y, double z);
-void			init_move(t_map *map, t_modify *modify, int center_x, int center_y);
+void			set_move(t_map *map, t_modify *modify, \
+				long long center_x, long long center_y);
 int				rotate_end(int keycode, t_param *param);
 
 int				mouse_event_draw(int x, int y, t_param *p);
@@ -147,6 +148,7 @@ void			update_max_min(t_map *map);
 void			destroy(t_param *p);
 int				rotate_end(int keycode, t_param *p);
 void			make_new_img(t_param *p);
-void			init_param(t_param *param, t_map *map, t_modify *modify, t_data *image);
+void			init_param(t_param *param, t_map *map, \
+				t_modify *modify, t_data *image);
 
 #endif

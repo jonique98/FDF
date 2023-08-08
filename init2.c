@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:19:13 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/07 09:51:04 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 06:04:25 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	init_modify(t_modify *modify)
 
 void	init_gap(t_map *map, t_modify *modify)
 {
-	while (map->map_width * modify->gap < WIN_MAX_X / 2 || map->map_height * modify->gap < WIN_MAX_Y / 2)
+	while (map->map_width * modify->gap < WIN_MAX_X / 2 \
+		|| map->map_height * modify->gap < WIN_MAX_Y / 2)
 		modify->gap++;
 	modify->ratio = modify->gap;
 	modify->scale = modify->gap;
@@ -41,8 +42,3 @@ void	init_param(t_param *param, t_map *map, t_modify *modify, t_data *image)
 	param->z_rotate = 0;
 }
 
-void	init_move(t_map *map, t_modify *modify, int center_x, int center_y)
-{
-	modify->x_move = -(map->max_x + map->min_x) / 2 + center_x;
-	modify->y_move = -(map->max_y + map->min_y) / 2 + center_y;
-}
