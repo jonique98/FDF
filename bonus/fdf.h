@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:06:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 13:00:56 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 13:59:13 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 # include "./get_next_line.h"
 # include "../minilibx/mlx.h"
-# include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
-# include <stdio.h>
 
 # define DEF 1
 # define WIN_MAX_X 1920
@@ -51,7 +49,6 @@ typedef struct m_data
 	long long	center_y;
 	char		*arr;
 }	t_map;
-
 
 typedef struct s_data
 {
