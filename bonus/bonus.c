@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:25:53 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 11:13:12 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:17:58 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	main(int ac, char **av)
 	mlx_mouse_hook(image.win, mouse_event_down, &param);
 	mlx_hook(image.win, 5, 0, mouse_event_up, &param);
 	mlx_hook(image.win, 6, 0, mouse_event_draw, &param);
+	mlx_hook(image.win, 17, 0, end, &param);
 	mlx_loop(image.mlx);
 }

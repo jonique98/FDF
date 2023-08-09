@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:06:46 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 13:59:22 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:18:31 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,6 @@ void			bres1(long *arr, t_data *img);
 void			bresenham_draw_line(t_data *image, \
 				t_cordinate *p1, t_cordinate *p2);
 void			dda(t_data *image, t_cordinate offset1, t_cordinate offset2);
+int				end(void);
 
 #endif
