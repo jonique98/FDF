@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:17:32 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 06:11:58 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:21:47 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	destroy(t_param *p)
 		free(p->map->offset[i]);
 	free(p->map->offset);
 	mlx_destroy_image(p->image->mlx, p->image->img);
-	system("leaks a.out");
 	exit(0);
 }
 
