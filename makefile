@@ -8,7 +8,7 @@ SRCS = $(wildcard $(SRCDIR)/*.c)
 OBJECTS = $(SRCS:.c=.o)
 INC = -I$(SRCDIR)
 
-BNSNAME = fdfbonus
+BNSNAME = fdf_bonus
 BNSSRCDIR = ./bonus
 BNSSRCS = $(wildcard $(BNSSRCDIR)/*.c)
 BNSOBJECTS = $(BNSSRCS:.c=.o)

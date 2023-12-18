@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:13:21 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 12:47:14 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:34:55 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 int	ft_strncmp(char *s1, char *s2, int n)
 {

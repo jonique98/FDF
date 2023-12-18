@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:16:02 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 10:39:55 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:34:40 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	algin_image(t_map *map, t_modify *mod)
 {

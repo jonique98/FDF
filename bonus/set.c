@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 07:31:28 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 10:40:48 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:14 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	set_radian(t_modify *modify, double x, double y, double z)
 {

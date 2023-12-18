@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:12:26 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 12:17:23 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:00 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 char	*make_map_line(int fd, int *error)
 {

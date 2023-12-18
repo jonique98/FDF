@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:19:13 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 10:40:24 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:34:57 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	init_modify(t_modify *modify)
 {

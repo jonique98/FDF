@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:31:20 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 10:40:46 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:16 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	update_max_min(t_map *map)
 {	

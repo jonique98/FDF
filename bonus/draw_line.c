@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 02:42:50 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 13:08:40 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:34:44 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	dda(t_data *image, t_cordinate offset1, t_cordinate offset2)
 {

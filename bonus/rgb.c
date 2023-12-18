@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 00:50:19 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 13:07:27 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:11 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	make_rgb(t_cordinate *c, char **arr)
 {

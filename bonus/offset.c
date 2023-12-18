@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 06:01:23 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 10:40:36 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:06 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	offset_cordinate(t_map *map, t_modify *mod, int i, int j)
 {

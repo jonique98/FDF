@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:36:48 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 06:01:51 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:12 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	rotate_x(t_cordinate *c, double gamma)
 {

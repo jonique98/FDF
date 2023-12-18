@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:17:32 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 14:22:21 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:04 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	mouse_event_draw(int x, int y, t_param *p)
 {

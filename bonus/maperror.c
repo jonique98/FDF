@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 06:03:15 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/09 14:21:11 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:02 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	wrong_char_check(char *arr)
 {

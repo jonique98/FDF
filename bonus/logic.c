@@ -6,11 +6,11 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:24:03 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 12:47:49 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/09 14:34:59 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "./fdf_bonus.h"
 
 void	draw(t_param *p)
 {
