@@ -9,6 +9,8 @@
 
 <img src = "https://github.com/jonique98/FDF/assets/104954561/797f708c-099e-4f2b-b17f-0ace856a55e9">
 
+<img src = "https://github.com/jonique98/FDF/assets/104954561/55f9e4ca-1269-412d-ab51-cf3ea6633746">
+
 </p>
 
 ![이미지](IMG_0428.png)
