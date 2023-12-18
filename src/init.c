@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: josumin <josumin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:13:21 by josumin           #+#    #+#             */
-/*   Updated: 2023/08/09 12:47:14 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/12/18 17:30:36 by josumin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	init_map_var(t_map *map)
 
 void	init_map(char *av, t_map *map)
 {
-	int	i;
 	int	fd;
 	int	error;
 
 	error = 0;
-	i = -1;
 	fd = open(av, O_RDONLY);
 	if (fd == -1 || ft_strlen(av) < 5 \
 		|| ft_strncmp(av + ft_strlen(av) - 4, ".fdf", 4))
