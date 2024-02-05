@@ -1,18 +1,21 @@
 CC = gcc
 MACCC = arch -x86_64 gcc
+
 CFLAGS = -Wall -Wextra -Werror
-LIBS = -L./minilibx -lmlx -framework OpenGL -framework AppKit
+LIBS = -L./ -lmlx -framework OpenGL -framework AppKit
 MACLIBS = -L./ -lmlx -framework OpenGL -framework AppKit
+
+MACNAME = fdf_mac
+NAME = fdf
+
+SRCDIR = ./src
+SRCS = $(wildcard $(SRCDIR)/*.c)
+OBJECTS = $(SRCS:.c=.o)
 
 MACSRCDIR = ./src
 MACSRCS = $(wildcard $(MACSRCDIR)/*.c)
 MACOBJECTS = $(MACSRCS:.c=.o)
 
-MACNAME = fdf_mac
-NAME = fdf
-SRCDIR = ./src
-SRCS = $(wildcard $(SRCDIR)/*.c)
-OBJECTS = $(SRCS:.c=.o)
 INC = -I$(SRCDIR)
 
 BNSNAME = fdf_bonus
@@ -27,22 +30,17 @@ all : $(NAME)
 
 bonus : $(BNSNAME)
 
-mac : $(MACNAME)
-
-$(MACNAME) : $(OBJECTS)
-	$(MACCC) $(OBJECTS) $(MACLIBS) -o $(NAME)
+mac : 
+	@make CC="$(MACCC)" LIBS="$(MACLIBS)"
 
 $(NAME) : $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) -o $(NAME)
 
-$(BNSNAME) : $(BNSOBJECTS)
-	$(CC) $(CFLAGS) $(BNSOBJECTS) $(LIBS) -o $(BNSNAME)
-
-$(MACSRCDIR)/%.o : $(MACSRCDIR)/%.c
-	$(MACCC) -c $< -o $@ $(INC)
-
 $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
+$(BNSNAME) : $(BNSOBJECTS)
+	$(CC) $(CFLAGS) $(BNSOBJECTS) $(LIBS) -o $(BNSNAME)
 
 $(BNSSRCDIR)/%.o : $(BNSSRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(BNSINC)
@@ -56,9 +54,6 @@ fclean : clean
 re : fclean all
 
 .PHONY : clean fclean all re bonus
-
-
-
 
 
 42 :
