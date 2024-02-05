@@ -1,4 +1,4 @@
-CC = arch -x86_64 gcc
+CC = gcc
 MACCC = arch -x86_64 gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBS = -L./minilibx -lmlx -framework OpenGL -framework AppKit
