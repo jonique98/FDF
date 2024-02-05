@@ -1,7 +1,14 @@
-CC = gcc
+CC = arch -x86_64 gcc
+MACCC = arch -x86_64 gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBS = -L./minilibx -lmlx -framework OpenGL -framework AppKit
+MACLIBS = -L./ -lmlx -framework OpenGL -framework AppKit
 
+MACSRCDIR = ./src
+MACSRCS = $(wildcard $(MACSRCDIR)/*.c)
+MACOBJECTS = $(MACSRCS:.c=.o)
+
+MACNAME = fdf_mac
 NAME = fdf
 SRCDIR = ./src
 SRCS = $(wildcard $(SRCDIR)/*.c)
@@ -20,11 +27,19 @@ all : $(NAME)
 
 bonus : $(BNSNAME)
 
+mac : $(MACNAME)
+
+$(MACNAME) : $(OBJECTS)
+	$(MACCC) $(OBJECTS) $(MACLIBS) -o $(NAME)
+
 $(NAME) : $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) -o $(NAME)
 
 $(BNSNAME) : $(BNSOBJECTS)
 	$(CC) $(CFLAGS) $(BNSOBJECTS) $(LIBS) -o $(BNSNAME)
+
+$(MACSRCDIR)/%.o : $(MACSRCDIR)/%.c
+	$(MACCC) -c $< -o $@ $(INC)
 
 $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
