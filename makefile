@@ -2,8 +2,8 @@ CC = gcc
 MACCC = arch -x86_64 gcc
 
 CFLAGS = -Wall -Wextra -Werror
-LIBS = -L./ -lmlx -framework OpenGL -framework AppKit
-MACLIBS = -L./ -lmlx -framework OpenGL -framework AppKit
+LIBS = -lmlx -framework OpenGL -framework AppKit
+MACLIBS = -L./mlx_mac -lmlx -framework OpenGL -framework AppKit
 
 MACNAME = fdf_mac
 NAME = fdf
